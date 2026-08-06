@@ -43,4 +43,65 @@
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
 
+const readline = require('readline-sync');
 
+function calculateSum(numbers) {
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+    }
+    return sum;
+}
+
+function calculateAverage(numbers) {
+    const sum = calculateSum(numbers);
+    return sum / numbers.length;
+}
+
+function findMaximum(numbers) {
+    let maximum = numbers[0];
+    for (let i = 1; i < numbers.length; i++) {
+        if (numbers[i] > maximum) {
+            maximum = numbers[i];
+        }
+    }
+    return maximum;
+}
+
+function findMinimum(numbers) {
+    let minimum = numbers[0];
+    for (let i = 1; i < numbers.length; i++) {
+        if (numbers[i] < minimum) {
+            minimum = numbers[i];
+        }
+    }
+    return minimum;
+}
+
+function main() {
+    const n = readline.questionInt('How many numbers? ');
+
+    if (n <= 0) {
+        console.log('Error: N must be a positive integer.');
+        return;
+    }
+
+    const numbers = [];
+    for (let i = 0; i < n; i++) {
+        const number = readline.questionInt(`Enter number ${i + 1}: `);
+        numbers.push(number);
+    }
+
+    const sum = calculateSum(numbers);
+    const average = calculateAverage(numbers);
+    const maximum = findMaximum(numbers);
+    const minimum = findMinimum(numbers);
+
+    console.log('\nResults:');
+    console.log(`Sum:     ${sum}`);
+    console.log(`Average: ${average.toFixed(1)}`);
+    console.log(`Maximum: ${maximum}`);
+    console.log(`Minimum: ${minimum}`);
+}
+
+main();
